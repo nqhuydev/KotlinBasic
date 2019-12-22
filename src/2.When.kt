@@ -21,6 +21,11 @@ fun main() {
 
     when(tuoi){
         in 1..5 -> println("Tuổi thiếu nhi")
-
+        in 6..15 -> println("Tuổi nhi đồng")
+        in 16..21 -> println("Tuổi thiếu niên")
+        in 22..30 -> println("Tuổi thanh niên")
+        in 30..45 -> println("Tuổi trung niên")
+        !in 1..100 -> println("Vui lòng nhập đúng số tuổi")
+        else -> println("Già lắm rồi")
     }
 }
