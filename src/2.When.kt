@@ -19,7 +19,7 @@ fun main() {
     if (s != null)
         tuoi = s.toInt()
 
-    when(tuoi){
+    when (tuoi) {
         in 1..5 -> println("Tuổi thiếu nhi")
         in 6..15 -> println("Tuổi nhi đồng")
         in 16..21 -> println("Tuổi thiếu niên")
@@ -27,5 +27,20 @@ fun main() {
         in 30..45 -> println("Tuổi trung niên")
         !in 1..100 -> println("Vui lòng nhập đúng số tuổi")
         else -> println("Già lắm rồi")
+    }
+
+
+    //Tính trong khoảng - Tính điểm thi demo
+    println("Nhập số điểm bạn có: ")
+    var diem: Double? = 0.0
+    val sdiem: String? = readLine()
+    if (sdiem != null) diem = sdiem.toDouble()
+    when (diem) {
+        in 0.0..4.9 -> println("Học lực YẾU")
+        in 0.0..4.9 -> println("Học lực YẾU")
+        in 0.0..4.9 -> println("Học lực YẾU")
+        in 0.0..4.9 -> println("Học lực YẾU")
+        in 0.0..4.9 -> println("Học lực YẾU")
+        else -> println("Vui lòng nhập đúng điểm")
     }
 }
