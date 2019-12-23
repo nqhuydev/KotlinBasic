@@ -35,12 +35,33 @@ fun main() {
     var diem: Double? = 0.0
     val sdiem: String? = readLine()
     if (sdiem != null) diem = sdiem.toDouble()
-    when (diem) {
-        in 0.0..4.9 -> println("Học lực YẾU")
-        in 0.0..4.9 -> println("Học lực YẾU")
-        in 0.0..4.9 -> println("Học lực YẾU")
-        in 0.0..4.9 -> println("Học lực YẾU")
-        in 0.0..4.9 -> println("Học lực YẾU")
-        else -> println("Vui lòng nhập đúng điểm")
+    if (diem != null) {
+        when (diem) {
+            in 0.0..4.9 -> println("Học lực YẾU")
+            in 5.0..6.4 -> println("Học lực TRUNG BÌNH")
+            in 6.5..7.9 -> println("Học lực KHÁ")
+            in 8.0..9.4 -> println("Học lực GIỎI")
+            in 9.5..10.0 -> println("Học lực XUẤT XẮC")
+            else -> println("Vui lòng nhập đúng điểm")
+        }
     }
+
+
+    // Trả luôn về kết quả cho biến
+    var x : Int = 2
+    var kq = when(x){
+        2 -> 100
+        else -> 101
+    }
+    println("KQ = $kq")
+
+
+    // Sử dụng biểu thức giống như If, ko cần sử dụng (expression)
+    var y :Int = 100
+    when{
+        y%2 == 0 -> println("$y là số chẵn")
+        y%2 != 0 -> println("$y là số lẻ")
+    }
+
+
 }
