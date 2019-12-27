@@ -4,10 +4,10 @@ fun main() {
 //    GiaiPhuongTrinhBac2()
 //    PhepToanNhapLieu()
 //    TinhDaySoToanHoc()
-//    tamgiacA(10)
-//    tamgiacB(10)
-//    tamgiacC(10)
-    hinhhocE(7)
+    tamgiacA(10)
+    tamgiacB(10)
+    tamgiacC(10)
+    hinhhocE(11)
 }
 
 
@@ -223,11 +223,13 @@ fun tamgiacD(so: Int) {
   * * * *
 * */
 fun hinhhocE(so: Int) {
-    var giua : Int = so / 2 + 1
-    for (i in 1..so) {
-        for (j in 1..so) {
-            if (j == giua) print("*")
-            if (j == i && j != giua) print("* ")
+//    if (so % 2 == 0) {
+//        println("Vui lòng nhập vào số Lẻ")
+//        return
+//    }
+    for (i in 0 until so) {
+        for (j in 0 until so) {
+            if (j == so / 2 || (j + i == so - 1) || (i == so - 1 && j <= so / 2) || (i == 0 && j >= so / 2)) print("* ")
             else print("  ")
 
         }
