@@ -6,7 +6,8 @@ fun main() {
 //    TinhDaySoToanHoc()
 //    tamgiacA(10)
 //    tamgiacB(10)
-    tamgiacC(10)
+//    tamgiacC(10)
+    hinhhocE(7)
 }
 
 
@@ -139,14 +140,15 @@ fun TinhDaySoToanHoc() {
 * *
 *
 * */
-fun tamgiacA(so :Int){
-    for(i in so downTo 1){
-        for (j in 1..i){
+fun tamgiacA(so: Int) {
+    for (i in so downTo 1) {
+        for (j in 1..i) {
             print("* ")
         }
         println()
     }
 }
+
 /* B,
 * *
 *
@@ -158,9 +160,9 @@ fun tamgiacA(so :Int){
 * * * * * * *
 * * * * * * * *
 * */
-fun tamgiacB(so :Int){
-    for(i in 1..so){
-        for (j in 1..i){
+fun tamgiacB(so: Int) {
+    for (i in 1..so) {
+        for (j in 1..i) {
             print("* ")
         }
         println()
@@ -178,11 +180,56 @@ fun tamgiacB(so :Int){
   * * * * * * *
 * * * * * * * *
 * */
-fun tamgiacC(so :Int){
-    for(i in so downTo 1){
-        for (j in 1..i){
-            print("  ")
+fun tamgiacC(so: Int) {
+    for (i in so downTo 1) {
+        for (j in 1..so) {
             if (j >= i) print("* ")
+            else print("  ")
+        }
+        println()
+    }
+}
+
+/* D,
+*
+* * * * * * * *
+  * * * * * * *
+    * * * * * *
+      * * * * *
+        * * * *
+          * * *
+            * *
+              *
+* */
+fun tamgiacD(so: Int) {
+    for (i in 1..so) {
+        for (j in 1..so) {
+            if (j >= i) print("* ")
+            else print("  ")
+        }
+        println()
+    }
+}
+
+/* E,
+*
+        * * * *
+        *   *
+        * *
+        *
+        *
+      * *
+    *   *
+  * * * *
+* */
+fun hinhhocE(so: Int) {
+    var giua : Int = so / 2 + 1
+    for (i in 1..so) {
+        for (j in 1..so) {
+            if (j == giua) print("*")
+            if (j == i && j != giua) print("* ")
+            else print("  ")
+
         }
         println()
     }
