@@ -39,7 +39,7 @@ fun randomDouble() {
 * Trò chơi đoán số.
 * */
 
-fun gameDoanSo() {
+private fun gameDoanSo() {
     while (true){
         println("Chào mừng bạn đến với game đoán số!")
         game()

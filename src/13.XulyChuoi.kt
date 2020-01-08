@@ -7,6 +7,9 @@ fun main() {
     soSanhChuoi()
     noiChenChuoi()
     tachChuoi()
+    baitapTachChuoi()
+//    kiemtrachuoiPanlynDrome()
+    toiUuChuoi()
 }
 
 /*
@@ -39,18 +42,19 @@ private fun demoChuoiStringBuilder() {
     chuoi.reverse()
     println(chuoi)
 }
+
 /*
 * Chuỗi trong Kotlin: String: là chuỗi các ký tự, trong Kotlin là lớp quản lý dữ liệu dạng văn bản
 * Nên khai báo kiểu dữ liệu cho biến để đỡ mất thời gian nội suy
 *
 * index
 * */
-private fun chuoiTrongKotlin(){
+private fun chuoiTrongKotlin() {
     //Khai báo
-    var  s : String = "Nguyen Huy" // Chuỗi s quản lý ký tự đầu tiên "N"
+    var s: String = "Nguyen Huy" // Chuỗi s quản lý ký tự đầu tiên "N"
     println(s)
     println("Chiều dài chuỗi: ${s.length}")
-    for (i in s){
+    for (i in s) {
         print("$i \t")
     }
     println()
@@ -70,17 +74,17 @@ private fun chuoiTrongKotlin(){
 * Trích lọc chuỗi: substring()
 * */
 
-private fun trichLoc(){
+private fun trichLoc() {
     var s = "Nguyen Quoc Huy"
-    println("${s.substring(7)}") // từ vị trí đầu đến cuối cùng
-    println("${s.substring(0, 7)}")
+    println(s.substring(7)) // từ vị trí đc chọn đến cuối cùng
+    println(s.substring(0, 7))
 }
 
 /*
 * Thay đổi chuỗi: replace()
 * */
 
-private fun doiChuoi(){
+private fun doiChuoi() {
     var s = "Nguyen Quoc Huy"
     s = s.replace("Quoc ", "", true) //biến true để không phân biệt hoa thường
     println(s)
@@ -93,17 +97,17 @@ private fun doiChuoi(){
 /*
 * Xóa khoảng trắng: trim(), trimStart(), trimEnd()
 * */
-private fun xoaKhoangTrang(){
+private fun xoaKhoangTrang() {
     var s = "   Nguyen Quoc Huy     "
-    println("${s.trimStart()}")
-    println("${s.trimEnd()}")
-    println("${s.trim()}")
+    println(s.trimStart())
+    println(s.trimEnd())
+    println(s.trim())
 }
 
 /*
 * So sánh chuỗi: compareTo(), compareToIgnoreCase()
 * */
-private fun soSanhChuoi(){
+private fun soSanhChuoi() {
     var s1 = "Nguyen Huy"
     var s2 = "Nguyen huy"
     val x = s1.compareTo(s2, false)// không phân biệt chữ hoa chữ thường
@@ -140,11 +144,71 @@ private fun noiChenChuoi() {
 * Đổi chữ Hoa - Thường
 * */
 
-private fun tachChuoi(){
+private fun tachChuoi() {
     val name = "Nguyen Quoc Huy"
     var arr = name.split(" ")
-    for (s in arr){
+    for (s in arr) {
         println(s.toLowerCase())// Biến toàn bộ thành chữ thường
         println(s.toUpperCase())// Biến toàn bộ thành chữ hoa
     }
+}
+
+/*
+* Bài tập Tách chuỗi
+* */
+
+private fun baitapTachChuoi() {
+    var s = "D:/me/music/download/ring.mp3"
+    var tach = s.split("/")
+    println("Cách 1: " + tach[tach.size - 1])
+    println("Cách 2: " + s.substring(s.lastIndexOf("/") + 1))
+
+    println("Lấy mỗi tên: " + s.substring(s.lastIndexOf("/") + 1, s.indexOf(".")))
+}
+
+/*
+* Kiểm tra chuỗi: PanlynDrome (Đảo ngược chuỗi vẫn bằng chính nó)
+* */
+
+private fun kiemtrachuoiPanlynDrome() {
+    while (true) {
+        println("Nhập vào chuỗi đểm kiểm tra(Panlyndrome):")
+        var s = readLine()
+        if (s == null) return
+
+        if (s.compareTo(s.reversed(), true) == 0) println("Là chuỗi Panlyndrome.")
+        else println("Không phải là chuỗi Panlyndrome.")
+
+        println("Bạn có muốn chơi tiếp không (c/k)?")
+        val c = readLine()
+        if (c == null || c.compareTo("k", true) == 0) break
+    }
+
+    println(cach2KiemtraChuoiPanlynDrome("madam"))
+}
+
+private fun cach2KiemtraChuoiPanlynDrome(s: String): Boolean {
+    for (i in s.indices) {
+        if (s[i] != s[s.length - 1 - i]) {
+            return false
+        }
+    }
+    return true
+}
+
+/*
+* Bài tập tối ưu chuỗi
+* */
+
+private fun toiUuChuoi() {
+    var chuoi = "  NguyEn    quOC    HUy     "
+    var arr = chuoi.trim().split(" ")
+    var finally = ""
+    for (word in arr) {
+        if (word.isNotEmpty()){
+            var newWord = word.toLowerCase()
+            finally+= newWord.replaceFirst(newWord[0], newWord[0].toUpperCase()).plus(" ")
+        }
+    }
+    println(finally)
 }
