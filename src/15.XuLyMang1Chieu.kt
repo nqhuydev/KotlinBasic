@@ -5,7 +5,7 @@ fun main() {
     locTimKiemDuLieu()
 }
 
-private fun demo(){
+private fun demo() {
     var mang = IntArray(10)
     for (i in mang.indices)
         mang[i] = Random.nextInt(100)
@@ -22,12 +22,14 @@ private fun demo(){
 * Filter(): Lọc , tìm kiểu dữ liệu
 * */
 
-private fun locTimKiemDuLieu(){
+private fun locTimKiemDuLieu() {
     val mang = IntArray(10)
     for (i in mang.indices)
         mang[i] = Random.nextInt(100)
     for (so in mang) print("$so\t")
     println()
-    val dsChan = mang.filter { item -> item % 2 ==0 }
-    println("Các số chăn: $dsChan")
+    val dsChan = mang.filter { item -> item % 2 == 0 }
+    println("Các số chẵn: $dsChan")
+    val dsLe = mang.filter { item -> item % 2 != 0 }
+    println("Các số lẻ: $dsLe")
 }
