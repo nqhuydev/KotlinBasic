@@ -12,11 +12,28 @@ fun main() {
     println(oto1.toString())
     oto1.xuatThongtin()
 
+    // Ví dụ về khai báo phương thức
     val hinhChuNhat = HinhChuNhat(4.5, 7.6)
     println("Thông tin hình chữ nhật vừa nhập:")
     hinhChuNhat.xuatThongTin()
     println("Chỉ xuất diện tích: ${hinhChuNhat.dienTich()}")
     println(hinhChuNhat.toString())
+
+
+    //Ví dụ về Overloading Method
+    val product = Product(1, "Coca", 10000)
+
+    // Ví dụ về varavg: thoải mái nhập đối số
+    println(product.sum(1, 2, 3, 4, 5, 6))
+    println(product.sum(90, 20, 10, 23))
+
+    //Ví dụ về Tính kế thừa, Kế thừa Class
+    val nvMoi = NhanVienChinhThuc()
+    val anhAn = NhanVienChinhThuc(1, "Nguyen AN")
+    val anhBinh = NhanVienBanThoiGian(2, "Nguyen Binh")
+    println("Lương của $nvMoi = ${nvMoi.tinhLuong(5)}")
+    println("Lương của anh $anhAn = ${anhAn.tinhLuong(30)}")
+    println("Lương của anh $anhBinh = ${anhBinh.tinhLuong(10)}")
 }
 /*
 
@@ -197,3 +214,158 @@ private class HinhChuNhat {
 *
 * Trong hàm có cả biến Instance và Local thì biến Local sẽ được ưu tiên hơn.
 * */
+
+//==================================================================
+
+/*
+* Overloading Method là đặc điểm trong cùng một lớp có nhiều phương thức(hàm) cùng tên
+* nhưng khác nhau về Signature
+* - Signature bao gồm:
+*       - số lượng các đối số
+*       - thứ tự các đối số
+*       - khác nhau về kiểu dữ liệu của đối số
+* - Kiểu dữ liệu trả về không được tính trong Signature
+* - Overloading là khả năng tái sử dụng lại phương thức(hàm)  và giúp việc gọi hàm linh hoạt hơn
+* - Constructors là trường hợp đặc biệt của Overloading
+
+ */
+class Product {
+    private var id: Int = -1
+    private var name: String = ""
+    private var price: Int = -1
+
+    // Đây là 3 constructor method khác nhau về số lượng đối số
+    // Là dạng được biệt của OverLoading Method
+    constructor()
+
+    constructor(id: Int, name: String, price: Int) {
+        this.id = id
+        this.name = name
+        this.price = price
+    }
+
+    constructor(id: Int, name: String) {
+        this.id = id
+        this.name = name
+    }
+
+    // Overloading Method
+    fun xuatThongTin() {
+        println("Product: $id, $name, $price")
+    }
+
+    fun xuatThongTin(product: Product) {
+        println("Product: ${product.id}, ${product.name}, ${product.price}")
+    }
+
+
+    //vararg là một dạng của Overloading: số lượng của đối số nhập vào
+    fun sum(vararg arr: Int): Int {
+        var s: Int = 0
+        for (i in arr) {
+            s += i
+        }
+        return s
+    }
+}
+
+
+/*
+* ====================== Kế thừa từ Class ============================
+* Khai báo trừa tượng: khi một phương thức chưa được thể hiện hành vi cụ thể, chỉ đưa ra luật và định nghĩa chung.
+* Lớp tổng quát hóa (lớp Cha): được khai báo : open abstract class TenLop{ public abstract fun tenHam(Đối số) : TenKieu }
+* Lớp chuyên biệt hóa (lớp Con): lơp con sẽ được bổ sung và mở rộng thêmư
+*
+* Abstract class : các phương thức trong abstract class có thể là trừu tượng, không thể định nghĩa trước nội dung
+* Ví dụ: Cách khai báo
+*  */
+// Lớp Cha
+private abstract class NhanVien {
+    private var ma: Int = -1
+    private var ten: String = ""
+    var Ma: Int
+        get() {
+            return ma
+        }
+        set(value) {
+            this.ma = value
+        }
+    var Ten: String
+        get() {
+            return ten
+
+        }
+        set(value) {
+            this.ten = value
+        }
+
+
+    constructor() {
+        this.ma = 0
+        this.ten = ""
+    }
+
+    constructor(ma: Int, ten: String) {
+        this.ma = ma
+        this.ten = ten
+    }
+
+    abstract fun tinhLuong(ngayCong: Int): Int
+
+    override fun toString(): String {
+        return "NhanVien(ma=$ma, ten='$ten')"
+    }
+
+
+}
+
+
+// Lớp con
+private class NhanVienChinhThuc : NhanVien {
+    constructor() : super()
+    constructor(ma: Int, ten: String) : super(ma, ten){
+        println("Đây làn nhân viên Chính thức.")
+    }
+
+    override fun tinhLuong(ngayCong: Int): Int {
+        if (ngayCong > 22)
+            return 10000000
+        return 10000000 - 100000 * (22 - ngayCong)
+    }
+
+}
+
+private class NhanVienBanThoiGian : NhanVien {
+    constructor() : super()
+    constructor(ma: Int, ten: String) : super(ma, ten){
+        println("Đây làn nhân viên Bán thời gian.")
+    }
+
+    override fun tinhLuong(ngayCong: Int): Int {
+        return ngayCong * 150000
+    }
+
+
+}
+
+/*
+* ====================== Kế thừa từ Interface ===========================
+* Interface: Định nghĩa ra giao diện tương tác, các giao ước và luật.
+*            Mặc định tất cả các phương thức là trừa tượng nếu chưa định nghĩa cả nội dung.
+*            Phương thức nào được định nghĩa nội dung thì sẽ không được lớp con Kế thừa
+* Tất cả lớp kế thừa từ Interface cũng phải định nghĩa lại toàn bộ phương thức trừa tượng của nó
+* */
+
+private interface MyInterFace{
+    fun bar()
+    fun foo(){
+        println("Đây là Foo")
+    }
+}
+
+private class LopCon : MyInterFace{
+    override fun bar() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+}
