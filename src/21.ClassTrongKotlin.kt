@@ -187,3 +187,13 @@ private class HinhChuNhat {
     }
 
 }
+
+/*
+* Tham chiếu This:
+* Có hai loại biến
+* 1. Instance variable: các thuộc tính các biến khai báo trong lớp và ngoài hàm. Các hàm trong lớp có thể truy xuất được
+* 2. Local variable: Là biến được khai báo trong đối số của hàm hoặc trong nội dung của hàm. chỉ có các hàm chứa
+* mới có thể truy xuất được. và đối số  trong hàm thường được mặc định là readOnly(val)
+*
+* Trong hàm có cả biến Instance và Local thì biến Local sẽ được ưu tiên hơn.
+* */
