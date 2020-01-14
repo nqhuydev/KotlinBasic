@@ -34,6 +34,19 @@ fun main() {
     println("Lương của $nvMoi = ${nvMoi.tinhLuong(5)}")
     println("Lương của anh $anhAn = ${anhAn.tinhLuong(30)}")
     println("Lương của anh $anhBinh = ${anhBinh.tinhLuong(10)}")
+
+    // Interface
+
+    val lopcon = LopCon()
+    lopcon.doSomeThing()
+    lopcon.makeSomeThing()
+
+    val lopdemo =LopDemo()
+    lopdemo.doSomeThing()
+    lopdemo.makeSomeThing()
+    lopdemo.new("Nguyen Huy")
+    lopdemo.old("Huy Nguyen")
+
 }
 /*
 
@@ -323,7 +336,7 @@ private abstract class NhanVien {
 // Lớp con
 private class NhanVienChinhThuc : NhanVien {
     constructor() : super()
-    constructor(ma: Int, ten: String) : super(ma, ten){
+    constructor(ma: Int, ten: String) : super(ma, ten) {
         println("Đây làn nhân viên Chính thức.")
     }
 
@@ -337,7 +350,7 @@ private class NhanVienChinhThuc : NhanVien {
 
 private class NhanVienBanThoiGian : NhanVien {
     constructor() : super()
-    constructor(ma: Int, ten: String) : super(ma, ten){
+    constructor(ma: Int, ten: String) : super(ma, ten) {
         println("Đây làn nhân viên Bán thời gian.")
     }
 
@@ -354,18 +367,56 @@ private class NhanVienBanThoiGian : NhanVien {
 *            Mặc định tất cả các phương thức là trừa tượng nếu chưa định nghĩa cả nội dung.
 *            Phương thức nào được định nghĩa nội dung thì sẽ không được lớp con Kế thừa
 * Tất cả lớp kế thừa từ Interface cũng phải định nghĩa lại toàn bộ phương thức trừa tượng của nó
+*
+* Interface có quyền da thừa kế
 * */
 
-private interface MyInterFace{
-    fun bar()
-    fun foo(){
-        println("Đây là Foo")
+private interface MyInterFace {
+    fun doSomeThing() {
+        println("MyInterFace Đây là doSomeThing")
+    }
+
+    fun makeSomeThing()
+}
+
+private interface OtherInterFace {
+    fun new(s : String)
+    fun old(s : String){
+        println("OtherInterface : $s")
     }
 }
 
-private class LopCon : MyInterFace{
-    override fun bar() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+private class LopCon : MyInterFace {
+    override fun doSomeThing() {
+        super.doSomeThing() // Kế thừa toàn bộ lệnh từ lớp cha
+        println("Đây là lớp con doSomeThing")
+
+    }
+
+    // Chỉ có phương thức nào được định nghĩ thì mới dùng super để kế thừa toàn bộ hành vi của lớp Cha
+    // Phương thức không có nội dung hay hành nào được thực hiên {} thì sẽ ko được super
+    override fun makeSomeThing() {
+        println("Đây là lớp con makeSomeThing")
+    }
+
+}
+private class LopDemo : MyInterFace, OtherInterFace {
+    override fun new(s: String) {
+        println("LopDemo: $s")
+    }
+
+    override fun makeSomeThing() {
+        println("LopDemo: makeSomeThing")
+    }
+
+    override fun doSomeThing() {
+        super.doSomeThing()
+        println("LopDemo: DoSomeThing")
+    }
+
+    override fun old(s: String) {
+        super.old(s)
+        println("LopDemo: $s")
     }
 
 }
