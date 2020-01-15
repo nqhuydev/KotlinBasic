@@ -67,6 +67,10 @@
 *   ------------Tính kế thừa:
 *   - Lớp con kế thừa tất cả các thành phần từ lớp Cha
 *   - Có thể mở rộng các thành phần kế thừa và bổ sung các thành phần mới
+*
+*  ------------Tính đa hình:
+*   - Tại từng thời điểm đối tượng sẽ có các hình thái khác nhau trong nhưng hoàn cảnh khác nhau
+*
 * */
 
 

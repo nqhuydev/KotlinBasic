@@ -35,7 +35,7 @@ fun main() {
     println("Lương của anh $anhAn = ${anhAn.tinhLuong(30)}")
     println("Lương của anh $anhBinh = ${anhBinh.tinhLuong(10)}")
 
-    // Interface
+    // Ví dụ về Interface
 
     val lopcon = LopCon()
     lopcon.doSomeThing()
@@ -47,6 +47,19 @@ fun main() {
     lopdemo.new("Nguyen Huy")
     lopdemo.old("Huy Nguyen")
 
+
+    // Ví dụ về Overriding Method
+    val congnhan1 = CongNhanChinhThuc(1, "1102", 1935, "Nguyen A")
+    val congnhan2 = CongNhanThoiVu()
+    congnhan2.Ma = 2
+    congnhan2.CMNN = "1103"
+    congnhan2.NamSinh = 1992
+    congnhan2.Ten= "Nguyen Huy"
+
+    val luongCongNhan1 = congnhan1.TinhLuong(30)
+    val luongCongNhan2 = congnhan2.TinhLuong(15)
+    println("Công nhân: ${congnhan1} có lương là : $luongCongNhan1")
+    println("Công nhân: ${congnhan2} có lương là : $luongCongNhan2")
 }
 /*
 
@@ -231,6 +244,7 @@ private class HinhChuNhat {
 //==================================================================
 
 /*
+* ====================== Overloading Method ============================
 * Overloading Method là đặc điểm trong cùng một lớp có nhiều phương thức(hàm) cùng tên
 * nhưng khác nhau về Signature
 * - Signature bao gồm:
@@ -417,6 +431,81 @@ private class LopDemo : MyInterFace, OtherInterFace {
     override fun old(s: String) {
         super.old(s)
         println("LopDemo: $s")
+    }
+
+}
+
+/*
+* ====================== Overriding Method===========================
+* Overriding Method: Xảy ra Trong 1 tập các lớp có mối quan hệ kế thừa với nhau:
+*   - tất cả các phương thức giống nhau về số lượng đối sổ, kiểu dữ liệu đối số, thứ tự đối số,
+*   - Khác nhau nội dung bên trong method
+*
+*Overloading Method: Xảy ra trong một lớp có nhiều phương thức cùng tên:
+*   - nhưng khác nhau về số lượng đối số, kiểu dữ liệu đối số, thứ tự của đối số
+* */
+
+/*
+* Ví dụ:
+* */
+
+private abstract class CongNhan {
+    private var ma : Int = -1
+    private var cmnd :String = ""
+    private var namsinh : Int = -1
+    private var ten : String = ""
+    var Ma : Int
+    get() {return  ma}
+    set(value) {ma = value}
+
+    var CMNN : String
+    get(){return cmnd}
+    set(value) {cmnd = value}
+
+    var NamSinh: Int
+    get() {return  namsinh}
+    set(value) {namsinh = value}
+
+    var Ten : String
+    get() {return  ten}
+    set(value) {ten = value}
+
+    constructor()
+
+    constructor(ma: Int, cmnd: String, namsinh: Int, ten: String) {
+        this.ma = ma
+        this.cmnd = cmnd
+        this.namsinh = namsinh
+        this.ten = ten
+    }
+
+    abstract fun TinhLuong(ngayCong: Int) : Int
+
+    override fun toString(): String {
+        return "CongNhan(ma=$ma, cmnd='$cmnd', namsinh=$namsinh, ten='$ten')"
+    }
+
+
+}
+
+private class CongNhanChinhThuc : CongNhan {
+    constructor() : super()
+    constructor(ma: Int, cmnd: String, namsinh: Int, ten: String) : super(ma, cmnd, namsinh, ten)
+
+    override fun TinhLuong(ngayCong: Int) : Int {
+        if (ngayCong > 22)
+            return 10000000
+        return 10000000 - 100000 * (22 - ngayCong)
+    }
+
+}
+
+private class CongNhanThoiVu : CongNhan {
+    constructor() : super()
+    constructor(ma: Int, cmnd: String, namsinh: Int, ten: String) : super(ma, cmnd, namsinh, ten)
+
+    override fun TinhLuong(ngayCong: Int) : Int {
+        return ngayCong * 150000 + 300
     }
 
 }
