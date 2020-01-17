@@ -69,8 +69,10 @@
 *   - Có thể mở rộng các thành phần kế thừa và bổ sung các thành phần mới
 *
 *  ------------Tính đa hình:
-*   - Tại từng thời điểm đối tượng sẽ có các hình thái khác nhau trong nhưng hoàn cảnh khác nhau
-*
+*   - Tại từng thời điểm đối tượng sẽ có các hình thái khác nhau trong những hoàn cảnh khác nhau
+*   - Tạo ra trong việc kế thừa:
+*                   - Kế thừa từ class
+*                   - Kế thừa từ Interface
 * */
 
 
